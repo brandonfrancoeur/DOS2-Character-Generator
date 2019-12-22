@@ -123,7 +123,7 @@ public class charGen {
         String input;
      	while(goodInput == 0){
       		input = user.nextLine();
-            switch(input){
+            	switch(input){
                 case "Y":
                     presetClass = true;
             	    goodInput = 1; 
@@ -143,12 +143,12 @@ public class charGen {
                 default:
                     System.out.println("Invalid input, Type Y for Yes or Type N for No");
                     break;
-            }
+            	}
          }
 
         //choose a random instrument
         String inst = getRand(charData.instruments);
-		charData.instrument = inst;
+ 	charData.instrument = inst;
       
         //get random Origin
         getOrigin(charData);
@@ -157,15 +157,15 @@ public class charGen {
         if(presetClass){
             //Select a random preset class
             presetClass(charData);
-          	generateTags(charData);
+            generateTags(charData);
         }
 
       	//User wants to randomize the character
         else if(!presetClass){
             distributeAtts(charData);
             generateCivils(charData);
-			generateTags(charData);
-          	generateTalent(charData);
+	    generateTags(charData);
+            generateTalent(charData);
             generateSkills(charData);
         }
 	
@@ -179,6 +179,7 @@ public class charGen {
             System.out.println();
             System.out.println("Class: " + charData.preset);
         }
+	    
         System.out.println();   
         System.out.println("Talents: " + charData.Talent1 + ", " + charData.Talent2 + ", " + charData.Talent3 );
         System.out.println();
@@ -219,13 +220,12 @@ public class charGen {
         System.out.println("Telekinesis: " + charData.telekinesis);
         System.out.println("Sneaking: " + charData.sneaking);
         System.out.println("Thievery: " + charData.thievery);
-     
       	System.out.println();
       	System.out.print("Skills: ");
       
       	if(presetClass){
-          System.out.print(charData.skill1 + ", " + charData.skill2 + ", " + charData.skill3);
-          System.out.println();
+          	System.out.print(charData.skill1 + ", " + charData.skill2 + ", " + charData.skill3);
+          	System.out.println();
         }
       	else if(!presetClass){
       		System.out.println(Arrays.toString(charData.skills));
@@ -237,8 +237,8 @@ public class charGen {
 
     //select a random element from one of the arrays
     public static String getRand(String[] myArray){
-       int rand = ThreadLocalRandom.current().nextInt(0, myArray.length);
-       return myArray[rand];
+    	int rand = ThreadLocalRandom.current().nextInt(0, myArray.length);
+       	return myArray[rand];
     }
     
   	//merge two arrays if required
@@ -257,41 +257,41 @@ public class charGen {
     }
   
   	//Select Random skills from the given attributes
-  	public static String[] selectSkills(String[] skillArray){
+  public static String[] selectSkills(String[] skillArray){
       String[] skillSet = new String[3];
       
       for(int i = 0; i < 3; i++){
-       String skill = getRand(skillArray);
-       skillArray = removeElement(skillArray, skill);
-       skillSet[i] = skill;
+      	String skill = getRand(skillArray);
+       	skillArray = removeElement(skillArray, skill);
+       	skillSet[i] = skill;
       }
       
       return skillSet;
-  	}
+    }
  	
   	//Simple remove function
-  	public static String[] removeElement(String[] array, String element){
+  public static String[] removeElement(String[] array, String element){
       String newArr[] = null;
       for(int i = 0; i < array.length; i++){
         if(array[i] == element){
            newArr = new String[array.length-1];
            for(int index = 0; index < i; index++){
-           		newArr[index] = array[index];	
+           	newArr[index] = array[index];	
            }
            for(int j = i; j < array.length-1; j++){
-           		newArr[j] = array[j+1];
+           	newArr[j] = array[j+1];
            }
            break;
         }
       }
       
-  	  return newArr;
-    }
+  	return newArr;
+ }
   
   	//Build a preset class
- 	public static void presetClass(Data charData){
-   		String preset = getRand(charData.preset_classes);
-        switch(preset){
+ public static void presetClass(Data charData){
+	String preset = getRand(charData.preset_classes);
+ 	switch(preset){
               	case "battlemage":
                     charData.preset = "Battlemage";
                     charData.Talent3 = "Comeback Kid";
@@ -507,17 +507,16 @@ public class charGen {
                     charData.skill3 = "Ignition";
                     break;
             }
-  	}
+  }
   
   	//Select a random origin
-  	public static void getOrigin(Data charData){
+  public static void getOrigin(Data charData){
     	String ori = getRand(charData.origins);
 
         switch(ori){
             case "The Red Prince":
                 charData.Talent1 = "Spellsong";
-                charData.Talent2 = "Sophisticated";
-                
+                charData.Talent2 = "Sophisticated";    
                 charData.origin = "The Red Prince";
                 break;
 
@@ -601,10 +600,10 @@ public class charGen {
                 break;
 
         }
-  	}
+  }
   
   	//Randomly select attributes to increment
-  	public static void distributeAtts(Data charData){
+  public static void distributeAtts(Data charData){
     	for(int i = 0; i < 3; i++){
                 String attribute = getRand(charData.attributes);
                 switch (attribute){
@@ -635,7 +634,7 @@ public class charGen {
                         break;
                     
                 }
-            }
+        }
             
             //select 2 random combat abilities
             for(int i = 0; i < 2; i++){
@@ -683,14 +682,14 @@ public class charGen {
 
                 }
             }
-  	}
+  }
   
   	//Select random a random civil ability to increment
-  	public static void generateCivils(Data charData){
-    		String civil = getRand(charData.civil_abilities);
-         	String output = civil.substring(0,1).toLowerCase() + civil.substring(1);
+  public static void generateCivils(Data charData){
+    	String civil = getRand(charData.civil_abilities);
+        String output = civil.substring(0,1).toLowerCase() + civil.substring(1);
             
-            switch(output){
+        switch(output){
                 case "bartering": 
                     charData.bartering++;
                     break;
@@ -719,17 +718,17 @@ public class charGen {
                     charData.thievery++;
                     break;
             }
-  	}
+  }
   
   	//Select 2 random tags
-  	public static void generateTags(Data charData){
-    		charData.tag1 = getRand(charData.tags);
-            charData.tags = removeElement(charData.tags, charData.tag1);
-            charData.tag2 = getRand(charData.tags);
-  	}
+  public static void generateTags(Data charData){
+    	charData.tag1 = getRand(charData.tags);
+        charData.tags = removeElement(charData.tags, charData.tag1);
+        charData.tag2 = getRand(charData.tags);
+  }
   
   	//Make sure that the third talent doesn't conflict with anything
-  	public static void generateTalent(Data charData){
+  public static void generateTalent(Data charData){
     	String cont = "false";
             
         while(cont == "false"){
