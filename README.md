@@ -1,2 +1,7 @@
 # DOS2-Character-Generator
-Simple terminal program that generates a random character for Divinity: Original Sin 2, still a work in progress.
+This is a simple command line program that generates a character for Divinity: Original Sin 2. The user can choose to select a random preset class or fully randomize theri character.
+
+Installation:
+1. Download the charGen.java file
+2. Open a terminal and run javac charGen.java to compile
+3. Run java charGen to start the program
